@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Box,
@@ -42,7 +42,6 @@ function App() {
   const [snackbar, setSnackbar] = useState({ open: false, message: '', severity: 'error' });
   
   // New state for disease discovery
-  const [diseaseInput, setDiseaseInput] = useState('');
   const [diseaseSuggestions, setDiseaseSuggestions] = useState([]);
   const [selectedDisease, setSelectedDisease] = useState(null);
   const [targetProteins, setTargetProteins] = useState([]);
@@ -127,7 +126,6 @@ function App() {
   };
 
   const handleDiseaseSearch = async (input) => {
-    setDiseaseInput(input);
     if (input.length > 2) {
       try {
         const response = await axios.get(`https://api.datamuse.com/words?sp=${input}*&max=10`);
@@ -142,7 +140,6 @@ function App() {
 
   const handleDiseaseSelect = (event, newValue) => {
     setSelectedDisease(newValue);
-    setDiseaseInput(newValue || '');
   };
 
   const handleAddTargetProtein = (event) => {
